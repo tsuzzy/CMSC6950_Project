@@ -25,3 +25,6 @@ However, the VTK part is not working on my machine, with an error like "vtk is i
 pip install vtk
 ```
 If all work fine, the environment is set up!
+
+## About the repository
+Folder `examples`: I played around with some instances in the capytaine [documentation](https://ancell.in/capytaine/latest/user_manual/cookbook.html) and backup the code and results here. 
