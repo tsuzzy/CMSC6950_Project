@@ -5,7 +5,7 @@ logging.basicConfig(level=logging.WARNING)
 
 # Loading a mesh: here is a simple geometry
 sphere = Sphere(radius=1.0, center=(0, 0, -2), name="my_sphere")
-sphere.show()
+# sphere.show()
 
 # Defining dof (degree of freedom)
 # in the x-direction
@@ -28,4 +28,4 @@ result2 = solver.solve(problem2)
 dataset = assemble_dataset([result, result2])
 
 dataset['added_mass'].sel(radiating_dof=["Surge", "Heave"], influenced_dof=["Surge", "Heave"], omega=1.0)
-print(dataset)
+dataset.to_netcdf("sphere.nc")
