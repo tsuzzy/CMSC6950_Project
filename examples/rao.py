@@ -13,7 +13,7 @@ bem_solver = cpt.BEMSolver()
 
 
 def generate_boat() -> cpt.FloatingBody:
-    boat = cpt.FloatingBody.from_file("../step_3d.msh", file_format="msh", name="pirate ship")
+    boat = cpt.FloatingBody.from_file("boat_200.mar", file_format="mar", name="pirate ship")
     boat.rotate_z(pi)
     boat.add_all_rigid_body_dofs()
     boat.keep_immersed_part()

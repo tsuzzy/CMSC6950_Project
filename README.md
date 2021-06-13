@@ -7,7 +7,7 @@ Ruixin Song
 ## Software setup
 
 ### Install conda
-Though the latest Python version is already 3.9.x when writing this document, conda with Python-3.8.x environment is more recommanded in terms of to be compatible with the Visualization Tool Kit (VTK), which will be introduced and fixed later.
+Though the latest Python version is already 3.9.x when writing this document, conda with Python-3.8.x environment is more recommanded in terms of to be compatible with the Visualization Toolkit (VTK), which will be introduced later.
 
 ### Install Capytaine
 After setting up conda, install the Capytaine module by:
@@ -15,7 +15,7 @@ After setting up conda, install the Capytaine module by:
 conda install -c conda-forge capytaine
 ```
 ### Dependencies
-Then, according to the Capytaine [document](https://ancell.in/capytaine/latest/user_manual/installation.html), you can install the dependencies that were not included in the capytaine module by:
+Then, according to the Capytaine [installation](https://ancell.in/capytaine/latest/user_manual/installation.html), we can install the dependencies that were not included in the capytaine module by:
 ```
 conda install matplotlib
 conda install vtk
@@ -27,4 +27,4 @@ pip install vtk
 If all work fine, the environment is set up!
 
 ## About the repository
-Folder `examples`: I played around with some instances in the capytaine [documentation](https://ancell.in/capytaine/latest/user_manual/cookbook.html) and backup the code and results here. 
+Folder `examples`: I played with some instances in the capytaine [documentation](https://ancell.in/capytaine/latest/user_manual/cookbook.html) and backup the code and results here. 

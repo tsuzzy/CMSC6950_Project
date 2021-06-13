@@ -4,12 +4,12 @@ import numpy as np
 import capytaine as cpt
 
 # Generate the mesh of a cylinder
-cylinder = cpt.HorizontalCylinder(
-    length=10.0, radius=1.0,  # Dimensions
-    center=(0, -2, -2),        # Position
-    nr=1, nx=8, ntheta=6,     # Fineness of the mesh
-)
-# cylinder = cpt.FloatingBody.from_file("boat_200.mar", file_format="mar", name="cylinder")
+# cylinder = cpt.HorizontalCylinder(
+#     length=10.0, radius=1.0,  # Dimensions
+#     center=(0, -2, -2),        # Position
+#     nr=1, nx=8, ntheta=6,     # Fineness of the mesh
+# )
+cylinder = cpt.FloatingBody.from_file("t13_data.msh", file_format="msh", name="cylinder")
 
 
 engine = cpt.BasicMatrixEngine()
