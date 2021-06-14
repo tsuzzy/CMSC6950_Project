@@ -1,8 +1,11 @@
-# My 1st computational task:
-# 1. Defining a sequence of gravities in different planets in the solar system
-# 2. Giving a list of densities of different liquid involving ideal water
-# 3. Defining a radiation problem
-# 4. Solving the problem and plotting the result in sets
+# My 1st computational task: solving radiation problems for different set of variables, and 
+# plotting added mass and radiation damping for each variable group
+
+# 1. Defining sequences of variables (water depth, liquid density, frequency, accleration of gravity)
+# 2. Generating a geometry
+# 3. Defining a set of radiation problems for each variable sequence
+# 4. Calculating added mass and radiation damping for each problem set
+# 5. Plotting the result in seperate subplots
 
 import capytaine as cpt
 import capytaine.io.xarray as xarr
@@ -13,11 +16,11 @@ logging.basicConfig(level=logging.INFO, format="%(levelname)s:\t%(message)s")
 
 import math
 import numpy as np
-# Profile of the axisymmetric body
+# Profile of the axisymmetric body (referred from examples/asym.py)
 def shape(z):
     return 0.1*(-math.pow((z+1), 2) + 16)
 
-# Generate the mesh and display it with VTK.
+# Generating the mesh and display it with VTK.
 geometry = cpt.FloatingBody(
     cpt.AxialSymmetricMesh.from_profile(shape, z_range=np.linspace(-5, 0, 30), nphi=40)
 )
@@ -26,7 +29,7 @@ geometry = cpt.FloatingBody(
 geometry.add_translation_dof(name="Heave")
 
 
-# Set up the problems
+# Setting up the problems
 # Problem set#1: RadiationProblem related to water depth
 bottoms = np.linspace(-5,-50,50)
 problems_seabottom = [cpt.RadiationProblem(body=geometry, radiating_dof='Heave', sea_bottom=bottom)
@@ -47,7 +50,7 @@ gravities = np.linspace(1, 20, 50)
 problems_grav = [cpt.RadiationProblem(body=geometry, radiating_dof='Heave', g=grav)
             for grav in gravities]
 
-# Solve the problems using the axial symmetry
+# Solving the problems with the axial symmetry
 solver = cpt.BEMSolver(engine=cpt.HierarchicalToeplitzMatrixEngine())
 
 results_seabottom = [solver.solve(problem) for problem in sorted(problems_seabottom)]
@@ -63,11 +66,11 @@ results_grav = [solver.solve(problem) for problem in sorted(problems_grav)]
 dataset4 = xarr.assemble_dataset(results_grav, wavelength=True)
 
 
-# Plot results
+# Plotting results
 import matplotlib.pyplot as plt
 
 fig, axs = plt.subplots(2,2)
-fig.suptitle('Variable controls')
+fig.suptitle('Added mass and radiation damping vs. Variable groups')
 
 def plot_result(subplot, variable_list, dataset, x_name):
     subplot.plot(
@@ -89,3 +92,4 @@ plot_result(axs[1,1], gravities, dataset4, 'acceleration of gravity (m/s²)')
 
 
 plt.show()
+plt.savefig('radiation_problem.png')
