@@ -69,54 +69,23 @@ import matplotlib.pyplot as plt
 fig, axs = plt.subplots(2,2)
 fig.suptitle('Variable controls')
 
-axs[0,0].plot(bottoms, dataset1['wavelength'], label="Wavelength")
-axs[0,0].plot(
-    bottoms,
-    dataset1['added_mass'].sel(radiating_dof='Heave',influenced_dof='Heave'),
-    label="Added mass")
-axs[0,0].plot(
-    bottoms,
-    dataset1['radiation_damping'].sel(radiating_dof='Heave',influenced_dof='Heave'),
-    label="Radiation damping")
-axs[0,0].set(xlabel='water depth')
-axs[0,0].grid()
-axs[0,0].legend()
+def plot_result(subplot, variable_list, dataset, x_name):
+    subplot.plot(
+        variable_list,
+        dataset['added_mass'].sel(radiating_dof='Heave',influenced_dof='Heave'),
+        label="Added mass")
+    subplot.plot(
+        variable_list,
+        dataset['radiation_damping'].sel(radiating_dof='Heave',influenced_dof='Heave'),
+        label="Radiation damping")
+    subplot.set(xlabel=x_name)
+    subplot.grid()
+    subplot.legend()
 
-axs[0,1].plot(
-    rhos,
-    dataset2['added_mass'].sel(radiating_dof='Heave',influenced_dof='Heave'),
-    label="Added mass")
-axs[0,1].plot(
-    rhos,
-    dataset2['radiation_damping'].sel(radiating_dof='Heave',influenced_dof='Heave'),
-    label="Radiation damping")
-axs[0,1].set(xlabel='liquid density')
-axs[0,1].grid()
-axs[0,1].legend()
+plot_result(axs[0,0], bottoms, dataset1, 'water depth (m)')
+plot_result(axs[0,1], rhos, dataset2, 'liquid density (kg/m³)')
+plot_result(axs[1,0], omegas, dataset3, 'frequency (rad/s)')
+plot_result(axs[1,1], gravities, dataset4, 'acceleration of gravity (m/s²)')
 
-axs[1,0].plot(omegas, dataset3['wavelength'], label="Wavelength")
-axs[1,0].plot(
-    omegas,
-    dataset3['added_mass'].sel(radiating_dof='Heave',influenced_dof='Heave'),
-    label="Added mass")
-axs[1,0].plot(
-    omegas,
-    dataset3['radiation_damping'].sel(radiating_dof='Heave',influenced_dof='Heave'),
-    label="Radiation damping")
-axs[1,0].set(xlabel='frequency (rad/s)')
-axs[1,0].grid()
-axs[1,0].legend()
-
-axs[1,1].plot(
-    gravities,
-    dataset4['added_mass'].sel(radiating_dof='Heave',influenced_dof='Heave'),
-    label="Added mass")
-axs[1,1].plot(
-    gravities,
-    dataset4['radiation_damping'].sel(radiating_dof='Heave',influenced_dof='Heave'),
-    label="Radiation damping")
-axs[1,1].set(xlabel='acceleration of gravity')
-axs[1,1].grid()
-axs[1,1].legend()
 
 plt.show()
