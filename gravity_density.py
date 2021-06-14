@@ -25,6 +25,8 @@ geometry = cpt.FloatingBody(
     cpt.AxialSymmetricMesh.from_profile(shape, z_range=np.linspace(-5, 0, 30), nphi=40)
 )
 
+geometry.show()
+
 # Adding degree of freedom (DOF)
 geometry.add_translation_dof(name="Heave")
 
@@ -69,7 +71,7 @@ dataset4 = xarr.assemble_dataset(results_grav, wavelength=True)
 # Plotting results
 import matplotlib.pyplot as plt
 
-fig, axs = plt.subplots(2,2)
+fig, axs = plt.subplots(2,2,figsize=(12,12))
 fig.suptitle('Added mass and radiation damping vs. Variable groups')
 
 def plot_result(subplot, variable_list, dataset, x_name):
@@ -90,6 +92,5 @@ plot_result(axs[0,1], rhos, dataset2, 'liquid density (kg/m³)')
 plot_result(axs[1,0], omegas, dataset3, 'frequency (rad/s)')
 plot_result(axs[1,1], gravities, dataset4, 'acceleration of gravity (m/s²)')
 
-
+plt.savefig('radiation.png')
 plt.show()
-plt.savefig('radiation_problem.png')
