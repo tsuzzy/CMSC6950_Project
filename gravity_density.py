@@ -71,7 +71,7 @@ dataset4 = xarr.assemble_dataset(results_grav, wavelength=True)
 # Plotting results
 import matplotlib.pyplot as plt
 
-fig, axs = plt.subplots(2,2,figsize=(12,12))
+fig, axs = plt.subplots(2,2,figsize=(10,10))
 fig.suptitle('Added mass and radiation damping vs. Variable groups')
 
 def plot_result(subplot, variable_list, dataset, x_name):
@@ -83,7 +83,7 @@ def plot_result(subplot, variable_list, dataset, x_name):
         variable_list,
         dataset['radiation_damping'].sel(radiating_dof='Heave',influenced_dof='Heave'),
         label="Radiation damping")
-    subplot.set(xlabel=x_name)
+    subplot.set(xlabel=x_name, ylabel='F')
     subplot.grid()
     subplot.legend()
 
