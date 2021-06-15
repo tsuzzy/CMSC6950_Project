@@ -56,7 +56,7 @@ problems_grav = [cpt.RadiationProblem(body=geometry, radiating_dof='Heave', g=gr
 solver = cpt.BEMSolver(engine=cpt.HierarchicalToeplitzMatrixEngine())
 
 results_seabottom = [solver.solve(problem) for problem in sorted(problems_seabottom)]
-dataset1 = xarr.assemble_dataset(results_seabottom, wavelength=True, wavenumber=True)
+dataset1 = xarr.assemble_dataset(results_seabottom, wavelength=True)
 
 results_density = [solver.solve(problem) for problem in sorted(problems_density)]
 dataset2 = xarr.assemble_dataset(results_density, wavelength=True)
@@ -67,30 +67,7 @@ dataset3 = xarr.assemble_dataset(results_freq, wavelength=True)
 results_grav = [solver.solve(problem) for problem in sorted(problems_grav)]
 dataset4 = xarr.assemble_dataset(results_grav, wavelength=True)
 
-
-# Plotting results
-import matplotlib.pyplot as plt
-
-fig, axs = plt.subplots(2,2,figsize=(10,10))
-fig.suptitle('Added mass and radiation damping vs. Variable groups')
-
-def plot_result(subplot, variable_list, dataset, x_name):
-    subplot.plot(
-        variable_list,
-        dataset['added_mass'].sel(radiating_dof='Heave',influenced_dof='Heave'),
-        label="Added mass")
-    subplot.plot(
-        variable_list,
-        dataset['radiation_damping'].sel(radiating_dof='Heave',influenced_dof='Heave'),
-        label="Radiation damping")
-    subplot.set(xlabel=x_name, ylabel='F')
-    subplot.grid()
-    subplot.legend()
-
-plot_result(axs[0,0], bottoms, dataset1, 'water depth (m)')
-plot_result(axs[0,1], rhos, dataset2, 'liquid density (kg/m³)')
-plot_result(axs[1,0], omegas, dataset3, 'frequency (rad/s)')
-plot_result(axs[1,1], gravities, dataset4, 'acceleration of gravity (m/s²)')
-
-plt.savefig('radiation.png')
-plt.show()
+dataset1.to_netcdf('ds_waterdepth.nc')
+dataset2.to_netcdf('ds_density.nc')
+dataset3.to_netcdf('ds_freq.nc')
+dataset4.to_netcdf('ds_gravity.nc')
