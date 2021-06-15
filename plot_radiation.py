@@ -35,8 +35,12 @@ fig.suptitle('Added mass and radiation damping vs. Variable groups')
 
 def plot_result(subplot, variable_list, dataset, x_name):
     """
-    Plotting the added mass and radiation damping against a given list of variables
-    :param subplot
+    Setting a subplot of the added mass and radiation damping against a given list of variables
+    :param subplot: subplot name
+    :param variable_list: a given list of variables
+    :param dataset: the dataset to be used as extracting added mass and radiation damping
+    :param x_name: name of the subplot x-axe
+    :return: None
     """
     subplot.plot(
         variable_list,
