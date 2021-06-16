@@ -9,9 +9,19 @@ periods = 2*np.pi / omegas
 wavelengths = dataset['wavelength']
 wavenumbers = dataset['wavenumber']
 
+# Reference of function `read_complex`:
+# https://stackoverflow.com/questions/47162983/how-to-save-xarray-dataarray-with-complex128-data-to-netcdf
+def read_complex(fn):
+    ds = xr.open_dataset(fn)
+    return ds['real'] + ds['imag'] * 1j
+
+# Loading matrices S and K
+S = read_complex('mat_s.nc')
+K = read_complex('mat_k.nc')
+
 from matplotlib import pyplot as plt
 
-# The first plot:
+# The first plot: plotting correlation of wavenumber, w and period
 fig1, ax1 = plt.subplots(subplot_kw={"projection": "3d"})
 sc = ax1.scatter(omegas, periods, wavenumbers, c=wavelengths, cmap='rainbow')
 ax1.set(xlabel='w (rad/s)', ylabel='period (s)', zlabel='wavenumber', title='Correlation of wavenumber, w and period')
@@ -47,5 +57,18 @@ contour_map(ax2[0,1], 2.0)
 contour_map(ax2[1,0], 3.0)
 contour_map(ax2[1,1], 4.0)
 fig2.suptitle('Shape of waves with different w values')
+
+# The third plot: plotting inluence matrices
+fig3, ax3 = plt.subplots(1, 2)
+
+im0 = ax3[0].imshow(abs(S))
+ax3[0].set(title="$|S|$")
+fig3.colorbar(im0, ax=ax3[0])
+
+im1 = ax3[1].imshow(abs(K))
+ax3[1].set(title="$|K|$")
+fig3.colorbar(im1, ax=ax3[1])
+
+fig3.suptitle('Influence matrices between two mesh objects')
 
 plt.show()
