@@ -71,4 +71,9 @@ fig3.colorbar(im1, ax=ax3[1])
 
 fig3.suptitle('Influence matrices between two mesh objects')
 
-plt.show()
+# Storing the images
+from os import path
+output_path = './img/'
+fig1.savefig(path.join(output_path,"2_1_correlation.png"))
+fig2.savefig(path.join(output_path,"2_2_waveshape.png"))
+fig3.savefig(path.join(output_path,"2_3_infmatrix.png"))

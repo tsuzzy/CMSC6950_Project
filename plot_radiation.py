@@ -59,5 +59,7 @@ plot_result(axs[0,1], rhos, dataset_density, 'liquid density (kg/m³)')
 plot_result(axs[1,0], omegas, dataset_freq, 'frequency (rad/s)')
 plot_result(axs[1,1], gravities, dataset_grav, 'acceleration of gravity (m/s²)')
 
-plt.savefig('radiation.png')
-plt.show()
+# Storing the images
+from os import path
+output_path = './img/'
+fig.savefig(path.join(output_path,"1_radiation.png"))
