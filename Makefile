@@ -41,6 +41,8 @@ clean:
 	rm *.nc
 	rm report.aux
 	rm report.log
+	rm report.bcf
+	rm report.run.xml
 
 .PHONY : clean
 
