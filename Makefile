@@ -1,4 +1,4 @@
-all: ds_density.nc ds_freq.nc ds_gravity.nc ds_waterdepth.nc 1_radiation.png ds_wave_cpl.nc mat_k.nc mat_s.nc 2_1_correlation.png 2_2_waveshape.png 2_3_infmatrix.png clean 
+all: ds_density.nc ds_freq.nc ds_gravity.nc ds_waterdepth.nc 1_radiation.png ds_wave_cpl.nc mat_k.nc mat_s.nc 2_1_correlation.png 2_2_waveshape.png 2_3_infmatrix.png report.pdf clean
 
 ds_density.nc: radiation.py
 	python radiation.py
@@ -33,8 +33,14 @@ mat_s.nc: wave.py
 2_3_infmatrix.png: plot_wave.py mat_k.nc mat_s.nc
 	python plot_wave.py
 
+report.pdf: report.tex 1_radiation.png 2_1_correlation.png 2_2_waveshape.png 2_3_infmatrix.png
+	pdflatex report.tex
+
 
 clean:
 	rm *.nc
+	rm report.aux
+	rm report.log
 
 .PHONY : clean
+
