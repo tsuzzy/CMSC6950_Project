@@ -38,7 +38,7 @@ X = Y = np.arange(-2, 2, seed) # defining a flat range and generating a grid mes
 X, Y = np.meshgrid(X, Y)
 Z1 = np.sqrt(X**2 + Y**2) # the 'basic' number
 
-fig2, ax2 = plt.subplots(2, 2, figsize=(8,8))
+fig2, ax2 = plt.subplots(2, 2, figsize=(10,10))
 
 def contour_map(ax, w):
     """
