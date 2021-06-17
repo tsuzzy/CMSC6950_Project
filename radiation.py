@@ -25,8 +25,6 @@ geometry = cpt.FloatingBody(
     cpt.AxialSymmetricMesh.from_profile(shape, z_range=np.linspace(-5, 0, 30), nphi=40)
 )
 
-geometry.show()
-
 # Adding degree of freedom (DOF)
 geometry.add_translation_dof(name="Heave")
 
@@ -38,7 +36,7 @@ problems_seabottom = [cpt.RadiationProblem(body=geometry, radiating_dof='Heave',
             for bottom in bottoms]
 
 # Problem set#2: RadiationProblem related to liquid density
-rhos = np.linspace(0.5, 13.5, 52)
+rhos = np.linspace(500, 2000, 50)
 problems_density = [cpt.RadiationProblem(body=geometry, radiating_dof='Heave', rho=r)
             for r in rhos]
 
