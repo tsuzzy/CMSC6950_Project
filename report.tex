@@ -3,8 +3,6 @@
 \usepackage{titling}
 \usepackage{graphicx}
 \graphicspath{ {./img/} }
-\usepackage{biblatex} %Imports biblatex package
-\addbibresource{ref.bib} %Import the bibliography file
 
 \newcommand{\subtitle}[1]{%
   \posttitle{%
@@ -61,28 +59,28 @@ After the solutions complete the computational tasks, the results can be assembl
 All the visualization work are doing in the scripts \texttt{plot\char`_radiation.py} and \texttt{plot\char`_wave.py}. The following part will explain the data showing in each plot.
 \begin{enumerate}
     \item Derived from the computation task1, figure \ref{fig:plt1} displays the variation of added mass and the radiation damping with each of the variable groups. The corresponding code can be found in the \texttt{plot\char`_radiation.py}. From the plotting result, we may find the trend of the added mass and radiation damping with the growth of water depth, liquid density, wave frequency and the acceleration of gravity.
-    \begin{figure}[h]
+    \begin{figure}[ht]
         \centering
         \includegraphics[width=1\textwidth]{img/1_radiation.png}
         \caption{added mass and radiation damping}
         \label{fig:plt1}
     \end{figure}
     \item Figure \ref{fig:plt2} from computational task2 plots the correlation of wave numbers, wave frequency, wave length and wave period. From the plot we may easily find the wave number is positively correlated with wave frequency, and negatively correlated with wave period and wave length. The corresponding code can be found in the script \texttt{plot\char`_wave.py}. The detailed plot can be viewed in Matplotlib by rotating the plot object.
-    \begin{figure}[h]
+    \begin{figure}[ht]
         \centering
         \includegraphics[width=1\textwidth]{img/2_1_correlation.png}
         \caption{Correlation of wavenumber, frequency, wavelength and period}
         \label{fig:plt2}
     \end{figure}
     \item The data used in figure \ref{fig:plt3} is a subset of results in task2, the wave frequency. In the original plan, I want to use the free surface elevation data to generate the contour plot. However the data in the elevation array is one-dimension and hard to decoded in Matplotlib since they are values matching with the free surface normal. Therefore, I use sine() function to simulate the water waves, but some defect exists: the real wave amplitude decays with propagation distance, and this part might be fixed with exponent function. 
-    \begin{figure}[h]
+    \begin{figure}[ht]
         \centering
         \includegraphics[width=1\textwidth]{img/2_2_waveshape.png}
         \caption{Wave shapes with different wave frequency}
         \label{fig:plt3}
     \end{figure}
     \item Figure \ref{fig:plt4} depict the influence matrices of two floating bodies, which is derived from the computational task3. The matrices are not square because the given mesh sizes are different. The corresponding code can be found in \texttt{plot\char`_wave.py}
-    \begin{figure}[h]
+    \begin{figure}[ht]
         \centering
         \includegraphics[width=1\textwidth]{img/2_3_infmatrix.png}
         \caption{Influence matrices of two floating bodies}
@@ -93,7 +91,7 @@ All the visualization work are doing in the scripts \texttt{plot\char`_radiation
 
 \section{Workflow I/O}
 Figure \ref{fig:plt5} depicts the workflow of the project.
-\begin{figure}[h]
+\begin{figure}[ht]
     \centering
     \includegraphics[width=1.2\textwidth]{workflow.png}
     \caption{workflow of the project}
@@ -101,6 +99,7 @@ Figure \ref{fig:plt5} depicts the workflow of the project.
 \end{figure}
 
 \clearpage
-\printbibliography
+\bibliographystyle{ieeetr}
+\bibliography{ref}
 
 \end{document}
