@@ -61,11 +61,11 @@ fig2.suptitle('Shape of waves with different w values')
 # The third plot: plotting inluence matrices
 fig3, ax3 = plt.subplots(1, 2)
 
-im0 = ax3[0].imshow(abs(S))
+im0 = ax3[0].imshow(abs(S), cmap='YlOrRd')
 ax3[0].set(title="$|S|$")
 fig3.colorbar(im0, ax=ax3[0])
 
-im1 = ax3[1].imshow(abs(K))
+im1 = ax3[1].imshow(abs(K), cmap='YlOrRd')
 ax3[1].set(title="$|K|$")
 fig3.colorbar(im1, ax=ax3[1])
 
