@@ -3,6 +3,7 @@ Course Project for CMSC6950 Spring 2021
 
 Ruixin Song
 
+***
 
 ## Software setup
 
@@ -42,5 +43,28 @@ pip install xarray
 
 If all work fine, the environment is set up!
 
+***
+
 ## About the repository
-Folder `examples`: I played with some instances in the capytaine [documentation](https://ancell.in/capytaine/latest/user_manual/cookbook.html) and backup the code and results here. 
+- Folder `examples`: 
+I played with some instances in the capytaine [documentation](https://ancell.in/capytaine/latest/user_manual/cookbook.html) and backup the code and results here.
+
+- Script `radiation.py` and `wave.py`:
+computational tasks
+- Script `plot_radiation.py` and `plot_wave.py`:
+visualizing the computaitonal tasks
+- Folder `img`: 
+storage of the visualization results
+- Project report files and bibliography
+- `Makefile`:
+    - Command `make deepclean` will remove the `report.pdf` and the figures in directory `img`.
+    - Command `make` will re-generalize all the files removed by `make deepclean` and delete the intermidiate data files.
+
+
+***
+
+## Workflow
+The workflow of the project can be described as following:
+
+
+![Project workflow](./workflow.png "Project workflow")
