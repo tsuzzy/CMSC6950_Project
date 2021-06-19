@@ -4,11 +4,11 @@
 \usepackage{graphicx}
 \graphicspath{ {./img/} }
 
-\newcommand{\subtitle}[1]{%
-  \posttitle{%
+\newcommand{\subtitle}[1]{
+  \posttitle{
     \par\end{center}
     \begin{center}\large#1\end{center}
-    \vskip0.5em}%
+    \vskip0.5em}
 }
 
 \title{Capytaine: waves and floating bodies}
@@ -21,9 +21,9 @@
 \maketitle
 
 \section{Introduction}
-Capytaine\cite{Ancellin2019} is a python-based package reproduces an open-sourced software Nemoh, which is a Boundary Element Method (BEM) solver in the Computational Fluid Dynamics (CFD) domain. Applied to python, Capytaine reinforces the solver by utilizing the computational flexibility in python and combining with other efficient tools in the python scientific ecosystem such as VTK, NumPy, xarray, etc. \\
+Capytaine\cite{Ancellin2019} is a python-based package reproduces an open-sourced software Nemoh, which is a Boundary Element Method (BEM) solver in the Computational Fluid Dynamics (CFD) domain. Applied to python, Capytaine reinforces the solver by utilizing the computational flexibility in python and combining with other efficient tools in the python scientific ecosystem such as VTK, NumPy, xarray, etc. 
 
-More specifically, Capytaine focuses on solving the problems of the water waves interacting with the floating bodies. It supports the computation of added mass, radiation damping, diffraction force and Froude-Krylov force for rigid bodies. For the theoretical part, it can perform Green Function and Kochin Function calculation inherited from Nemoh's core functionalities. Aside from these, Capytaine implemented 3D animation of the floating bodies motion and free surface elevation, which can function with the Visualization Toolkit (VTK).\\
+More specifically, Capytaine focuses on solving the problems of the water waves interacting with the floating bodies. It supports the computation of added mass, radiation damping, diffraction force and Froude-Krylov force for rigid bodies. For the theoretical part, it can perform Green Function and Kochin Function calculation inherited from Nemoh's core functionalities. Aside from these, Capytaine implemented 3D animation of the floating bodies motion and free surface elevation, which can function with the Visualization Toolkit (VTK).
 
 With the features in Capytaine, the project defines several computational problems and uses the functionalities in the package to solve them, then extracts subset data from the results and makes them visible with Matplotlib and VTK.
 
@@ -59,28 +59,28 @@ After the solutions complete the computational tasks, the results can be assembl
 All the visualization work are doing in the scripts \texttt{plot\char`_radiation.py} and \texttt{plot\char`_wave.py}. The following part will explain the data showing in each plot.
 \begin{enumerate}
     \item Derived from the computation task1, figure \ref{fig:plt1} displays the variation of added mass and the radiation damping with each of the variable groups. The corresponding code can be found in the \texttt{plot\char`_radiation.py}. From the plotting result, we may find the trend of the added mass and radiation damping with the growth of water depth, liquid density, wave frequency and the acceleration of gravity.
-    \begin{figure}[ht]
+    \begin{figure}[!htb]
         \centering
         \includegraphics[width=1\textwidth]{img/1_radiation.png}
         \caption{added mass and radiation damping}
         \label{fig:plt1}
     \end{figure}
     \item Figure \ref{fig:plt2} from computational task2 plots the correlation of wave numbers, wave frequency, wave length and wave period. From the plot we may easily find the wave number is positively correlated with wave frequency, and negatively correlated with wave period and wave length. The corresponding code can be found in the script \texttt{plot\char`_wave.py}. The detailed plot can be viewed in Matplotlib by rotating the plot object.
-    \begin{figure}[ht]
+    \begin{figure}[!htb]
         \centering
         \includegraphics[width=1\textwidth]{img/2_1_correlation.png}
         \caption{Correlation of wavenumber, frequency, wavelength and period}
         \label{fig:plt2}
     \end{figure}
     \item The data used in figure \ref{fig:plt3} is a subset of results in task2, the wave frequency. In the original plan, I want to use the free surface elevation data to generate the contour plot. However the data in the elevation array is one-dimension and hard to decoded in Matplotlib since they are values matching with the free surface normal. Therefore, I use sine() function to simulate the water waves, but some defect exists: the real wave amplitude decays with propagation distance, and this part might be fixed with exponent function. 
-    \begin{figure}[ht]
+    \begin{figure}[!htb]
         \centering
         \includegraphics[width=1\textwidth]{img/2_2_waveshape.png}
         \caption{Wave shapes with different wave frequency}
         \label{fig:plt3}
     \end{figure}
     \item Figure \ref{fig:plt4} depict the influence matrices of two floating bodies, which is derived from the computational task3. The matrices are not square because the given mesh sizes are different. The corresponding code can be found in \texttt{plot\char`_wave.py}
-    \begin{figure}[ht]
+    \begin{figure}[!htb]
         \centering
         \includegraphics[width=1\textwidth]{img/2_3_infmatrix.png}
         \caption{Influence matrices of two floating bodies}
@@ -91,9 +91,9 @@ All the visualization work are doing in the scripts \texttt{plot\char`_radiation
 
 \section{Workflow I/O}
 Figure \ref{fig:plt5} depicts the workflow of the project.
-\begin{figure}[ht]
+\begin{figure}[!htb]
     \centering
-    \includegraphics[width=1.2\textwidth]{workflow.png}
+    \includegraphics[width=1\textwidth]{workflow.png}
     \caption{workflow of the project}
     \label{fig:plt5}
 \end{figure}
