@@ -45,8 +45,11 @@ report.pdf: report.tex 1_radiation.png 2_1_correlation.png 2_2_waveshape.png 2_3
 	pdflatex report.tex
 
 clean:
-	rm *.nc
-	rm report.aux report.log report.bbl report.blg
+	rm *.nc report.bbl report.aux report.blg report.fdb_latexmk report.fls report.log
 
 .PHONY : clean
 
+deepclean:
+	rm report.pdf img/*.png
+
+.PHONY: deepclean
